@@ -29,6 +29,7 @@
         npe.printStackTrace();
         username = "Loginname";
         Password = "";
+
     }
     User user = userController.isUserValidByLoginName(username,Password);
     if(!currentSession.isLoggedIn() && user != null)
