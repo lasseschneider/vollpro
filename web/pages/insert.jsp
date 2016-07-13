@@ -42,8 +42,7 @@
 
 <body>
 --%>
-<%@ include file="includes/header.jsp" %>
-<%@ include file="includes/menu.jsp" %>
+<%@ include file="includes/header_code.jsp" %>
 <%
 
 
@@ -65,7 +64,8 @@
 
             <h3>Überschrift 3</h3>
 --%>
-
+<%@ include file="includes/header.jsp" %>
+<%@ include file="includes/menu.jsp" %>
             <div class="spacer40">
             </div>
 

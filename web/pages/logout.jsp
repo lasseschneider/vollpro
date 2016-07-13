@@ -10,25 +10,23 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ include file="includes/header.jsp" %>
-<%@ include file="includes/menu.jsp" %>
 
+<%@ include file="includes/header_code.jsp" %>
 <%
+    boolean loggedOut;
+    String Message;
     if(currentSession.isLoggedIn()){
-    currentSession.setLoggedInUntil(new Timestamp(System.currentTimeMillis()));
+        currentSession.setLoggedInUntil(new Timestamp(System.currentTimeMillis()));
         currentSession.setLoggedIn(false);
-    sc.updateSession(currentSession);
-      //  response.sendRedirect("index.jsp");
-        %>
-    Vielen Dank <%=currentSession.getUser().getLogin_name()%>. Sie haben sich erfolreich ausgeloggt.
-<%
+        sc.updateSession(currentSession);
+        loggedOut = true;
+        Message = "Vielen Dank " + currentSession.getUser().getLogin_name() + ". Sie haben sich erfolreich ausgeloggt.";
     }
     else {
-        %>
-        Ausloggen ist nur nach erfolgreichem einloggen möglich.
-<%
+        Message = "Ausloggen ist nur nach erfolgreichem einloggen möglich.";
     }
 %>
-
-
+<%@ include file="includes/header.jsp" %>
+<%@ include file="includes/menu.jsp" %>
+<%=Message%>
 <%@include file="includes/footer.jsp"%>

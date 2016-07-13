@@ -6,39 +6,6 @@
   Time: 17:47
   To change this template use File | Settings | File Templates.
 --%>
-<%
-    String session_id = session.getId();
-    SessionController sc = new SessionController();
-    boolean sessionFlag = sc.doesSessionExists(session_id);
-    boolean isUserLoggedIn = sc.isSessionValid(session_id);
-    if(!sc.doesSessionExists(session_id))
-    {
-        sc.setNewSession(session_id);
-    }
-    Session currentSession = sc.getSessionBySessionID(session_id);
-    UserController userController = new UserController();
-    String logout = request.getParameter("logout");
-    String username = request.getParameter("loginname");
-    String Password = request.getParameter("loginpass");
-    try{
-        if(username.equals("null"))    {
-            username = "Loginname";
-            Password = "";
-        }
-    }catch (NullPointerException npe)    {
-        npe.printStackTrace();
-        username = "Loginname";
-        Password = "";
-
-    }
-    User user = userController.isUserValidByLoginName(username,Password);
-    if(!currentSession.isLoggedIn() && user != null)
-    {
-        currentSession.setLoggedIn(true);
-        currentSession.setUser(user);
-        sc.updateSession(currentSession);
-    }
-%>
 <head>
     <%@ page contentType="text/html;charset=UTF-8" language="java" %>
     <title>VollPro bRef</title>
@@ -63,6 +30,11 @@
     Login gültig bis <%=( currentSession.getLoggedInUntil())%>.
     <%
         }else{
+            if(wrongEntry){
+                %>
+    Falsche Eingabe <br>
+    <%
+            }
     %>
     <form action="../index.jsp" method="POST">
         User:<input type="text" name="loginname" value=<%=username%> /><br />

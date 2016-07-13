@@ -26,8 +26,13 @@
 </html>
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ include file="pages/includes/header_code.jsp" %>
 <%@ include file="pages/includes/header.jsp" %>
+
 <%@ include file="pages/includes/menu.jsp" %>
+
+
+
 <%@ include file ="pages/includes/footer.jsp" %>
 
 

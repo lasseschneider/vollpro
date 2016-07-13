@@ -12,6 +12,7 @@
 <%@ page import="java.util.Date" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.text.ParseException" %>
+<%@ include file="includes/header_code.jsp" %>
 <%
     ArrayList<String> nachrichten = new ArrayList<String>();
     String vorn;
