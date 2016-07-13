@@ -17,72 +17,68 @@
     ArrayList<String> nachrichten = new ArrayList<String>();
     String vorn;
     String nachn;
-    String registerSub;
-    //ToDo: Geburtsdatum einfügen
-    SimpleDateFormat sf = new SimpleDateFormat("dd.MM.YYYY");
-
-    java.sql.Date datuum = new java.sql.Date(sf.parse("12.12.2016").getTime());
-    String pw = "";
-    String pw2 = "";
+    SimpleDateFormat sf         = new SimpleDateFormat("dd.MM.yyyy");
+    String pw                   = "";
+    String pw2                  = "";
     String loginn;
-    boolean isVornameValid = false;
-    boolean isNachnameValid = false;
-    boolean isGebDatumValid = false;
-    boolean isLoginnameValid = false;
-    boolean isPWValid = false;
-    boolean isBirthdayValid = false;
+    boolean isVornameValid      = false;
+    boolean isNachnameValid     = false;
+    boolean isGebDatumValid     = false;
+    boolean isLoginnameValid    = false;
+    boolean isPWValid           = false;
     String birthday;
-    java.sql.Date gebTag = null;
-    vorn = request.getParameter("vorname");
-    nachn = request.getParameter("nachname");
-    //gebd = request.getParameter("geburtsdatum").toString();
-    pw = request.getParameter("password");
-    pw2 = request.getParameter("password2");
-    loginn = request.getParameter("login_name");
-    registerSub = request.getParameter("registerSubmit");
-    birthday = request.getParameter("geburtsdatum");
+    java.sql.Date gebTag        = null;
+    vorn                        = request.getParameter("vorname");
+    nachn                       = request.getParameter("nachname");
+    pw                          = request.getParameter("password");
+    pw2                         = request.getParameter("password2");
+    loginn                      = request.getParameter("login_name");
+    birthday                    = request.getParameter("geburtsdatum");
 
+    //check, if Date Format is Valid and not null
     try{
         if(!birthday.equals("null"))
         {
             try{
                 gebTag = new java.sql.Date( sf.parse(birthday).getTime());
+                isGebDatumValid = true;
             }catch(ParseException pe)
             {
                 pe.printStackTrace();
                 gebTag = null;
-                nachrichten.add("Geburtstag im Format TT.MM.JJJJ eingeben");
+                nachrichten.add(" Geburtstag im Format TT.MM.JJJJ eingeben. ");
                 birthday = "";
             }
         }
     }catch(NullPointerException npe)
     {
         npe.printStackTrace();
-        gebTag = null;
-        birthday="";
+        gebTag      = null;
+        birthday    = "";
     }
 
-    //check if Vorname is valid and not null
+    //check if First Name is valid and not null
     try {
         if(!vorn.equals("null")) {
-            //nachrichten.add("Benutzer " + vorn + " angelegt");
             isVornameValid = true;
         }
     }catch (NullPointerException npe){
-        vorn = "";
+        vorn                = "";
         nachrichten.add("Bitte Vornamen eintragen");
-        isVornameValid = false;
+        isVornameValid      = false;
     }
-    //check if nachname is valid and not null
+    //check if last name is valid and not null
     try {
         if(!nachn.equals("null")) {
             isNachnameValid = true;
         }
     }catch (NullPointerException npe){
-        nachn = "";
+        nachn               = "";
         nachrichten.add("Bitte Nachnamen eintragen");
-        isNachnameValid = false;
+        isNachnameValid     = false;
     }
+
+    //check if username is valid and not null
    try{
        if(!loginn.equals("null")) {
            isLoginnameValid = User.isUserNameValid(loginn);
@@ -92,18 +88,20 @@
        }
    }catch(NullPointerException npe)   {
        npe.printStackTrace();
-       isLoginnameValid = false;
-       loginn = "";
+       isLoginnameValid     = false;
+       loginn               = "";
        nachrichten.add("Username ist leer");
    }
+
+    //Check if both passwords are equal and not null
 try{
     if(!pw.equals("null") && !pw2.equals("null")){
         isPWValid = true;
     }
 }catch(NullPointerException npe){
     npe.printStackTrace();
-    pw = "";
-    pw2 = "";
+    pw              = "";
+    pw2             = "";
     nachrichten.add("Passwörter neu eingeben");
 }
 
@@ -114,17 +112,6 @@ try{
 <%@ include file="includes/header.jsp" %>
 <%@ include file="includes/menu.jsp" %>
 
-<%--
-<div class="container">
-
-    <h1>Registrieren</h1>
-
-    <h2><a href="../index.jsp">Index</a> <a href="insert.jsp">Insert</a> <a href="register.jsp">Registrieren</a> </h2>
-
-    <h3>JUNGE!!!</h3>
-    <div class="spacer40">
-    </div>
---%>
     <div>
         <%if(!isLoginnameValid && !isNachnameValid && !isVornameValid && !isPWValid && !isGebDatumValid){
             %>
@@ -162,21 +149,15 @@ try{
 
 <%
     }
-
     }else{
-        UserController uc = new UserController();
+        UserController uc   = new UserController();
         PersonController pc = new PersonController();
-        uc.insertNewUser(loginn,null,pw);
+        uc.insertNewUser(loginn,pw);
         pc.insertNewPerson(nachn,vorn,gebTag);
 
         %><br>
         Registrierung war erfolgreich<br>
         Es kann sich mit dem Username <%=loginn%> angemeldet werden.
-<%
-
-    }
-
-%>
-
+<%  }   %>
 </div>
 <%@ include file="includes/footer.jsp" %>
