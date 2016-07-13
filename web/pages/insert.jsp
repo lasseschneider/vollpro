@@ -43,29 +43,15 @@
 <body>
 --%>
 <%@ include file="includes/header_code.jsp" %>
+<%@ include file="includes/header.jsp" %>
+<%@ include file="includes/menu.jsp" %>
 <%
-
-
+    String Message = "";
     if(!currentSession.isLoggedIn()){
-
-        %>
-            Please Login first.
-          <%
+        %>Please Login first.<%
     }else {
 
 %>
-
-       <%-- <div class="container">
-
-            <h1>Datei hochladen</h1>
-
-            <h2><a href="../index.jsp">Index</a> <a href="insert.jsp">Insert</a> <a href="register.jsp">Registrieren</a> </h2>
-
-
-            <h3>Überschrift 3</h3>
---%>
-<%@ include file="includes/header.jsp" %>
-<%@ include file="includes/menu.jsp" %>
             <div class="spacer40">
             </div>
 

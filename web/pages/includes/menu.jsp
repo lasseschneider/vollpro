@@ -24,6 +24,10 @@
                 Registrieren
             </a><br>
 
+            <a href="../pages/refereeList.jsp" class="btn btn-primary">
+                Personen
+            </a><br>
+
             <a href="../pages/logout.jsp" class="btn btn-primary">
                 Ausloggen
             </a><br>

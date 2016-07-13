@@ -1,6 +1,8 @@
 <%@ page import="Controller.*" %>
 <%@ page import="Model.*" %>
 <%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
 <%--
   Created by IntelliJ IDEA.
   User: Lasse
@@ -15,7 +17,6 @@
 
 <%@ include file="pages/includes/header.jsp" %>
 <%@ include file="pages/includes/menu.jsp" %>
-
 <%@ include file ="pages/includes/footer.jsp" %>
 
 

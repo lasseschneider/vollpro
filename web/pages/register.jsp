@@ -150,14 +150,18 @@ try{
 <%
     }
     }else{
-        UserController uc   = new UserController();
-        PersonController pc = new PersonController();
-        uc.insertNewUser(loginn,pw);
-        pc.insertNewPerson(nachn,vorn,gebTag);
+        UserController userCon   = new UserController();
+        PersonController perCo = new PersonController();
+        User newUser = userCon.insertNewUser(loginn,pw);
+        perCo.insertNewPerson(nachn,vorn,gebTag);
+        if (newUser != null) {
 
         %><br>
         Registrierung war erfolgreich<br>
-        Es kann sich mit dem Username <%=loginn%> angemeldet werden.
-<%  }   %>
+        Es kann sich mit dem Username <%=newUser.getLogin_name()%> angemeldet werden.
+<%  }
+else{%>
+Alles Scheiße<br>
+<%}  } %>
 </div>
 <%@ include file="includes/footer.jsp" %>
