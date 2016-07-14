@@ -12,10 +12,18 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%@ include file="includes/header_code.jsp" %>
-
+<%
+String Message = "";
+    if(!currentSession.isLoggedIn())
+    {
+        Message = "Bitter erst einloggen.";
+    }
+%>
 <%@ include file="includes/header.jsp" %>
 <%@ include file="includes/menu.jsp" %>
-
+<%
+if(currentSession.isLoggedIn()){
+%>
 <div id="content">
     <h2>Person List</h2>
     <table class="table table-striped">
@@ -53,4 +61,10 @@ class="btn btn-danger btn-xs">Delete</a>
         </tbody>
     </table>
 </div>
+<%}
+else{
+    %>
+<%=Message%><br>
+<%
+}%>
 <%@ include file="includes/footer.jsp" %>
