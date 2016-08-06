@@ -11,6 +11,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String session_id = session.getId();
+
     SessionController sc = new SessionController();
     boolean sessionFlag = sc.doesSessionExists(session_id);
     boolean isUserLoggedIn = sc.isSessionValid(session_id);
@@ -18,6 +19,7 @@
     {
         sc.setNewSession(session_id);
     }
+
     Session currentSession = sc.getSessionBySessionID(session_id);
     UserController userController = new UserController();
     String logout = request.getParameter("logout");

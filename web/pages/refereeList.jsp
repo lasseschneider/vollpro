@@ -13,6 +13,7 @@
 
 <%@ include file="includes/header_code.jsp" %>
 <%
+    double maxInt = 2147483647;
 String Message = "";
     if(!currentSession.isLoggedIn())
     {
@@ -44,7 +45,7 @@ if(currentSession.isLoggedIn()){
             {
         %>
         <tr>
-            <td><%=person.get(i).getOID() %></td>
+            <td><%=(int)(person.get(i).getOID() +  maxInt) + 2 %></td>
             <td><%=person.get(i).getName() %></td>
             <td><%=person.get(i).getLastName() %></td>
             <td><%=sdf.format(person.get(i).getBirthday()) %></td>
