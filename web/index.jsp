@@ -17,22 +17,23 @@
 
 <%@ include file="pages/includes/header.jsp" %>
 <%@ include file="pages/includes/menu.jsp" %>
-
-<%
+<%String Welcome = "Wecome to VollPro - bReff";%>
+<%=Welcome%>
+<%--
 RefereeController rc = new RefereeController();
     ArrayList<Referee> arList = rc.getAllReferees();
     for (int i = 0; i < arList.size(); ++i){
-%>
+--%>
     <%--=arList.get(i).getPerson().getName()--%><br>
-<%}
+<%--}
     ArrayList<Person> persList = CSVParser.getPersonList("C:\\Users\\Lasse\\Documents\\Studium\\Praxisprojekt\\Turnierinsert.csv");
-%>
-<%=persList.get(1).getName()%>
+--%>
+<%--=persList.get(1).getName()%>
 <%
 PersonController per = new PersonController();
     boolean abc = per.insertPersons(persList);
     int newOid = per.getNewOID();
-%><%=abc%><br><%=newOid%>
+%><%=abc%><br><%=newOid--%>
 <%@ include file ="pages/includes/footer.jsp" %>
 
 
